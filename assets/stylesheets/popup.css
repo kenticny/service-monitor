@@ -1,0 +1,12 @@
+body {
+  width: 500px;
+  height: 400px;
+}
+.active {
+  display: block !important;
+}
+.view {
+  display: none;
+  width: 100%;
+  height: 100%;
+}

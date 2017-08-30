@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "ServiceMonitor",
+  "version": "1.0.0",
+  "author": "kenticny",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "128": "/assets/images/icon-128.png"
+  },
+  "description": "Service monitor",
+  "browser_action": {
+    "default_icon": "/assets/images/icon-128.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  }
+}
