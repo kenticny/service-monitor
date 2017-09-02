@@ -1,7 +1,7 @@
 let historyInstance = null;
 class HistoryStack {
   constructor() {
-    this.stack = [1];
+    this.stack = [];
   }
   static getInstance() {
     if (!historyInstance) {
@@ -26,7 +26,8 @@ class HistoryStack {
 }
 
 class History {
-  constructor(view, params) {
+  constructor(title, view, params) {
+    this.title = title;
     this.view = view;
     this.params = params;
   }

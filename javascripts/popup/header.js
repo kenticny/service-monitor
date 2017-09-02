@@ -39,10 +39,6 @@ class HeaderBar {
         console.log('back');
       });
       this.navLeft.appendChild(backIcon);
-      let homeIcon = this._iconBtn('home', function() {
-        console.log('home');
-      });
-      this.navLeft.appendChild(homeIcon);
     }
   }
 

@@ -10,10 +10,6 @@ function renderView(viewID) {
     removeClass(activeViews[i], 'active');
   }
   addClass(view, 'active');
-
-  // set history after render view
-  let history = new History(view);
-  HistoryStack.getInstance().pushHistory(history);
 }
 
 /**
@@ -62,7 +58,12 @@ const Views = {
 
     // init monitor list page header
     let header = new HeaderBar('Monitor List');
-    header.setRightView({icon: 'refresh'}, {icon: 'add'});
+    header.setRightView({icon: 'refresh'}, {
+      icon: 'add',
+      click: function() {
+
+      }
+    });
 
     let monitorList = document.querySelector('#monitor-list-view .monitor-list');
     for (let item of list) {

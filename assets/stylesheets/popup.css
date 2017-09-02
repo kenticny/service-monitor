@@ -52,6 +52,11 @@ body {
   cursor: pointer;
 }
 
+.content-body {
+  height: 400px;
+  overflow: auto;
+}
+
 #monitor-list-view {
   
 }
