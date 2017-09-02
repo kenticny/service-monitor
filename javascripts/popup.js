@@ -1,10 +1,8 @@
-const historyStack = [];
-
-function setNavTitle(title) {
-  let navTitle = document.querySelector('#nav-bar .title-bar');
-  navTitle.innerHTML = title;
-}
-
+/**
+ * render view by view id
+ * set view from hide to visible
+ * @param {String} viewID 
+ */
 function renderView(viewID) {
   let view = document.getElementById(viewID);
   let activeViews = document.querySelectorAll('.view.active');
@@ -12,8 +10,17 @@ function renderView(viewID) {
     removeClass(activeViews[i], 'active');
   }
   addClass(view, 'active');
+
+  // set history after render view
+  let history = new History(view);
+  HistoryStack.getInstance().pushHistory(history);
 }
 
+/**
+ * add class name to element
+ * @param {Element} elem 
+ * @param {String} className 
+ */
 function addClass(elem, className) {
   let classes = elem.className.split(' ');
   classes.push(className);
@@ -21,6 +28,11 @@ function addClass(elem, className) {
   elem.className = setify(classes).join(' ');
 }
 
+/**
+ * remove class name from element
+ * @param {Element} elem 
+ * @param {String} className 
+ */
 function removeClass(elem, className) {
   let classes = elem.className.split(' ');
   classes = setify(classes)
@@ -31,6 +43,10 @@ function removeClass(elem, className) {
   elem.className = classes.join(' ');
 }
 
+/**
+ * convert array to set
+ * @param {Array} arr 
+ */
 function setify(arr) {
   return arr.filter(function(l, i, a) {
     return a.indexOf(l) == i;
@@ -39,15 +55,33 @@ function setify(arr) {
 
 const Views = {
   renderEmptyListView() {
-    setNavTitle('Monitor List');
+    new HeaderBar('Monitor List')
     renderView('empty-list-view');
   },
   renderMonitorListView(list) {
-    setNavTitle('Monitor List');
+
+    // init monitor list page header
+    let header = new HeaderBar('Monitor List');
+    header.setRightView({icon: 'refresh'}, {icon: 'add'});
+
     let monitorList = document.querySelector('#monitor-list-view .monitor-list');
     for (let item of list) {
       let itemElem = document.createElement('li');
-      itemElem.innerHTML = JSON.stringify(item);
+      itemElem.className = 'monitor-item';
+      
+      let row = document.createElement('div')
+      itemElem.appendChild(row);
+
+      let nameSpan = document.createElement('span');
+      nameSpan.className = 'monitor-name';
+      nameSpan.innerHTML = item.name;
+      row.appendChild(nameSpan);
+
+      let statusSpan = document.createElement('span');
+      statusSpan.className = 'monitor-status';
+      statusSpan.innerHTML = item.status;
+      row.appendChild(statusSpan);
+
       monitorList.appendChild(itemElem);
     }
     renderView('monitor-list-view')
