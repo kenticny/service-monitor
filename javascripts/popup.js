@@ -1,58 +1,8 @@
-/**
- * render view by view id
- * set view from hide to visible
- * @param {String} viewID 
- */
-function renderView(viewID) {
-  let view = document.getElementById(viewID);
-  let activeViews = document.querySelectorAll('.view.active');
-  for (let i = 0; i < activeViews.length; i++) {
-    removeClass(activeViews[i], 'active');
-  }
-  addClass(view, 'active');
-}
-
-/**
- * add class name to element
- * @param {Element} elem 
- * @param {String} className 
- */
-function addClass(elem, className) {
-  let classes = elem.className.split(' ');
-  classes.push(className);
-  classes = classes.map(n => n.trim())
-  elem.className = setify(classes).join(' ');
-}
-
-/**
- * remove class name from element
- * @param {Element} elem 
- * @param {String} className 
- */
-function removeClass(elem, className) {
-  let classes = elem.className.split(' ');
-  classes = setify(classes)
-  let classIdx = classes.indexOf(className);
-  if (classIdx > -1) {
-    classes.splice(classIdx, 1);
-  }
-  elem.className = classes.join(' ');
-}
-
-/**
- * convert array to set
- * @param {Array} arr 
- */
-function setify(arr) {
-  return arr.filter(function(l, i, a) {
-    return a.indexOf(l) == i;
-  });
-}
-
-const Views = {
+const popup = {};
+popup.Views = {
   renderEmptyListView() {
-    new HeaderBar('Monitor List')
-    renderView('empty-list-view');
+    new HeaderBar()
+    // renderView('empty-list-view');
   },
   renderMonitorListView(list) {
 
@@ -61,7 +11,8 @@ const Views = {
     header.setRightView({icon: 'refresh'}, {
       icon: 'add',
       click: function() {
-
+        let newpageHeader = new HeaderBar('Add Monitor');
+        ViewClass.renderView('add-monitor-view', newpageHeader);
       }
     });
 
@@ -85,7 +36,7 @@ const Views = {
 
       monitorList.appendChild(itemElem);
     }
-    renderView('monitor-list-view')
+    ViewClass.renderView('monitor-list-view', header)
   }
 };
 
@@ -94,9 +45,9 @@ const Views = {
 
   BG.listItem().then(list => {
     if (!list || list.length == 0) {
-      Views.renderEmptyListView();
+      popup.Views.renderEmptyListView();
     } else {
-      Views.renderMonitorListView(list);
+      popup.Views.renderMonitorListView(list);
     }
   });
 })();

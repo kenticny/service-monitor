@@ -1,6 +1,5 @@
 class HeaderBar {
   constructor(title) {
-    this.title = title;
     this.navTitle = document.querySelector('#nav-bar .title-bar');
     this.navRight = document.querySelector('#nav-bar .right-bar');
     this.navLeft = document.querySelector('#nav-bar .left-bar');
@@ -14,7 +13,12 @@ class HeaderBar {
    * @param {String} title 
    */
   setNavTitle(title) {
+    this.title = title;
     this.navTitle.innerHTML = title;
+  }
+
+  getNavTitle() {
+    return this.title;
   }
 
   /**
