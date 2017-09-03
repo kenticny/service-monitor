@@ -19,8 +19,15 @@ var _ = {
       elem.removeChild(elem.lastChild);
     }
   },
-  isEmptyObject() {
-
+  isEmptyObject(obj) {
+    let isEmpty = true;
+    for (let k in obj) {
+      if (obj[k]) {
+        isEmpty = false;
+        break;
+      }
+    }
+    return isEmpty;
   },
   keys: Object.keys,
 }
