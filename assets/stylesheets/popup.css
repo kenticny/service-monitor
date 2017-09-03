@@ -57,6 +57,8 @@ body {
   overflow: auto;
 }
 
+
+/* monitor list */
 #monitor-list-view {
   
 }
@@ -91,4 +93,39 @@ body {
   display: inline-block;
   float: right;
   text-align: center;
+}
+
+/* add monitor */
+#add-monitor-view {
+
+}
+.add-monitor-form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.add-monitor-form li {
+  /* background: red; */
+  list-style-type: none;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 5px;
+}
+.add-monitor-form li .label {
+  display: inline-block;
+  width: 120px;
+  text-align: left;
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+}
+.add-monitor-form li input {
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  height: 28px;
+  font-size: 15px;
+  color: #999;
 }
