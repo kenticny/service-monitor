@@ -26,9 +26,7 @@ class HistoryStack {
 }
 
 class History {
-  constructor(title, view, params) {
-    this.title = title;
-    this.view = view;
-    this.params = params;
+  constructor(renderFunc) {
+    this.renderFunc = renderFunc;
   }
 }

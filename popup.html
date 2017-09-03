@@ -25,11 +25,10 @@
 
       <!-- Add Monitor -->
       <div id="add-monitor-view" class="view">
-        <ul>
-          <li>Name: <input /></li>
-          <li>URL: <input /></li>
-          <li>Check Format: <textarea></textarea></li>
-          <li></li>
+        <ul class="add-monitor-form">
+          <li><span class="label">Name</span><input id="add-name" placeholder="monitor name" /></li>
+          <li><span class="label">URL</span><input id="add-url" placeholder="service URL" /></li>
+          <li><span class="label wline">Check Format</span><input id="add-chformat" placeholder="check format" /></li>
         </ul>
       </div>
 
@@ -39,10 +38,11 @@
       </div>
     </div>
 
+    <script src="./javascripts/common/utils.js"></script>
     <script src="./javascripts/popup/classname.js"></script>
     <script src="./javascripts/popup/history.js"></script>
-    <script src="./javascripts/popup/view.js"></script>
     <script src="./javascripts/popup/header.js"></script>
+    <script src="./javascripts/popup/view.js"></script>
     <script src="./javascripts/popup.js"></script>
   </body>
 </html>
